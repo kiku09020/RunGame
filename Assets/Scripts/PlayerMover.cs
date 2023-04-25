@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
@@ -21,16 +22,17 @@ public class PlayerMover : MonoBehaviour
     void OnMove(InputValue value)
     {
         var axis = value.Get<Vector3>();
-        moveVec = new Vector3(axis.x, 0, axis.z);
 
-        print(moveVec);
+        moveVec = new Vector3(axis.x, 0, axis.z);
     }
 
     void FixedUpdate()
     {
         if (rb.velocity.magnitude < maxVel) {
-            rb.AddForce(moveVec * speed);
-            print(rb.velocity.magnitude);
+            var targetVec = targetTransform.forward * moveVec.normalized.magnitude;
+
+			rb.AddForce(targetVec * speed);
+            print(targetTransform.forward.magnitude);
         }
 	}
 }
