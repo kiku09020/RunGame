@@ -29,7 +29,8 @@ public class PlayerMover : MonoBehaviour
     void FixedUpdate()
     {
         if (rb.velocity.magnitude < maxVel) {
-            var targetVec = targetTransform.forward * moveVec.normalized.magnitude;
+            // ³–Ê•ûŒü * ³‹K‰»‚³‚ê‚½“ü—ÍƒxƒNƒgƒ‹‚Ì‘å‚«‚³
+            var targetVec = targetTransform.rotation * moveVec;
 
 			rb.AddForce(targetVec * speed);
             print(targetTransform.forward.magnitude);

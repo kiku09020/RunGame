@@ -21,6 +21,7 @@ public class PlayerRotator : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		// yŽ²‰ñ“]
 		prevRot.y += inputVector.x * rotateSpeed * Time.deltaTime;
 
 		targetTransform.localEulerAngles = prevRot;
