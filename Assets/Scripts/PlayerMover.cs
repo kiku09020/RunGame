@@ -1,26 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] float speed = 50;
+    [SerializeField] float maxVel = 200;
+
+    Vector3 moveVec;
+
+    [Header("Components")]
+    [SerializeField] Transform targetTransform;
     [SerializeField] Rigidbody rb;
-    [SerializeField] float speed = 200;
 
     //--------------------------------------------------
 
-    void Awake()
+    // ˆÚ“®ŠÖŒW‚Ì“ü—ÍŽæ“¾
+    void OnMove(InputValue value)
     {
-        
+        var axis = value.Get<Vector3>();
+        moveVec = new Vector3(axis.x, 0, axis.z);
+
+        print(moveVec);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        var x = Input.GetAxis("Horizontal");
-        var z = Input.GetAxis("Vertical");
-        var vec = new Vector3(x, 0, z);
-
-        rb.AddForce(vec * speed);
-        print(vec);
-    }
+        if (rb.velocity.magnitude < maxVel) {
+            rb.AddForce(moveVec * speed);
+            print(rb.velocity.magnitude);
+        }
+	}
 }
