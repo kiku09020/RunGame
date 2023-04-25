@@ -26,7 +26,7 @@ public class PlayerRotator : MonoBehaviour
 		var delta = targetTransform.position - prevPos;
 		prevPos = targetTransform.position;
 
-		if (delta.magnitude > rotateThreshold) {
+		if (delta.magnitude != 0) {
 			var ofstRot = Quaternion.Inverse(Quaternion.LookRotation(Vector3.forward));		// 補正
 
 			var forword = targetTransform.TransformDirection(Vector3.forward);				// 前方ベクトル取得

@@ -26,14 +26,21 @@ public class PlayerMover : MonoBehaviour
         moveVec = new Vector3(axis.x, 0, axis.z);
     }
 
+    // カメラからみたプレイヤーへの進行方向に進
+
+
     void FixedUpdate()
     {
         if (rb.velocity.magnitude < maxVel) {
-            // 正面方向 * 正規化された入力ベクトルの大きさ
-            var targetVec = targetTransform.rotation * moveVec;
+            var forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+            var moveForword = forward * moveVec.z + Camera.main.transform.right * moveVec.x;
 
-			rb.AddForce(targetVec * speed);
-            print(targetTransform.forward.magnitude);
+			rb.AddForce(moveForword * speed);
+
+   //         // 正面方向 * 正規化された入力ベクトルの大きさ
+   //         var targetVec = targetTransform.rotation * moveVec;
+
+			//rb.AddForce(targetVec * speed);
         }
 	}
 }
