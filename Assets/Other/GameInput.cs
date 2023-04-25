@@ -132,8 +132,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Backward"",
-                    ""id"": ""fd709017-05de-47bc-a146-e694c303e298"",
+                    ""name"": ""backward"",
+                    ""id"": ""386305cd-718e-434b-8be8-b4d5dc48aafd"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
