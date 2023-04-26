@@ -9,7 +9,7 @@ public class MoveState : PlayerStateBase {
 
 	public override void OnEnter()
 	{
-		animator.SetTrigger("Walking");
+		animator.SetBool("Walking", true);
 	}
 
 	public override void OnUpdate()
@@ -21,6 +21,6 @@ public class MoveState : PlayerStateBase {
 
 	public override void OnExit()
 	{
-
+		animator.SetBool("Walking", false);
 	}
 }

@@ -10,7 +10,7 @@ public class IdleState : PlayerStateBase {
 
 	public override void OnEnter()
 	{
-		animator.SetTrigger("Standing");
+		animator.SetBool("Standing", true);
 	}
 
 	public override void OnUpdate()
@@ -22,6 +22,7 @@ public class IdleState : PlayerStateBase {
 
 	public override void OnExit()
 	{
+		animator.SetBool("Standing", false);
 
 	}
 }

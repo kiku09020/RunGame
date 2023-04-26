@@ -28,7 +28,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
             ""id"": ""ba5df36e-c6ee-47df-8d1c-3c78f0c83322"",
             ""actions"": [
                 {
-                    ""name"": ""Move_Pressed"",
+                    ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""b4954f0c-6d33-4572-8c5a-e467367f0bcb"",
                     ""expectedControlType"": ""Vector3"",
@@ -90,11 +90,11 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""3D Vector"",
                     ""id"": ""356480c4-70e9-4fcd-a3e2-53df00066919"",
-                    ""path"": ""3DVector"",
+                    ""path"": ""3DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move_Pressed"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -105,7 +105,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move_Pressed"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -116,7 +116,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move_Pressed"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -127,7 +127,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move_Pressed"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -138,7 +138,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move_Pressed"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -227,7 +227,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move_Pressed = m_Player.FindAction("Move_Pressed", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_CameraY = m_Player.FindAction("CameraY", throwIfNotFound: true);
@@ -296,7 +296,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move_Pressed;
+    private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_CameraY;
@@ -304,7 +304,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     {
         private @GameInput m_Wrapper;
         public PlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move_Pressed => m_Wrapper.m_Player_Move_Pressed;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @CameraY => m_Wrapper.m_Player_CameraY;
@@ -317,9 +317,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Move_Pressed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove_Pressed;
-                @Move_Pressed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove_Pressed;
-                @Move_Pressed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove_Pressed;
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -333,9 +333,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move_Pressed.started += instance.OnMove_Pressed;
-                @Move_Pressed.performed += instance.OnMove_Pressed;
-                @Move_Pressed.canceled += instance.OnMove_Pressed;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -417,7 +417,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     public DebugActions @Debug => new DebugActions(this);
     public interface IPlayerActions
     {
-        void OnMove_Pressed(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnCameraY(InputAction.CallbackContext context);
