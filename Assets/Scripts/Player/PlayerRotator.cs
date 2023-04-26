@@ -8,7 +8,6 @@ public class PlayerRotator : MonoBehaviour
 {
 	[SerializeField] Transform targetTransform;
 	[SerializeField] float rotateDuration = 0.2f;
-	[SerializeField] float rotateThreshold = 0.05f;
 
 	Vector3 prevPos;
 	float currentVel;
