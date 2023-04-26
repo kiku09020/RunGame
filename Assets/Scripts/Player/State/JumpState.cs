@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : MonoBehaviour
+public class JumpState : PlayerStateBase
 {
 
-    //--------------------------------------------------
+	//--------------------------------------------------
 
-    void Awake()
-    {
-        
-    }
+	public override void OnEnter()
+	{
+		animator.SetTrigger("Jumping");
+	}
 
-    void Update()
-    {
-        
-    }
+	public override void OnUpdate()
+	{
+
+	}
+
+	public override void OnExit()
+	{
+
+	}
 }

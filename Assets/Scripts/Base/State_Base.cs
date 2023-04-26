@@ -2,18 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State_Base : MonoBehaviour
-{
+namespace GameController.State {
+    public abstract class State_Base : MonoBehaviour {
 
-    //--------------------------------------------------
-
-    void Awake()
-    {
-        
-    }
-
-    void Update()
-    {
-        
+        public abstract void OnEnter();
+        public abstract void OnUpdate();
+        public abstract void OnExit();
     }
 }
