@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player {
 	public class PlayerRotator : MonoBehaviour {
@@ -22,16 +20,21 @@ namespace Player {
 		// 回転補正　参考： https://nekojara.city/unity-rotate-to-movement-direction
 		private void FixedUpdate()
 		{
+			Debug.DrawLine(targetTransform.position, prevPos,Color.yellow,3);
 			var delta = targetTransform.position - prevPos;
 			prevPos = targetTransform.position;
 
-			if (delta.magnitude != 0) {
-				var ofstRot = Quaternion.Inverse(Quaternion.LookRotation(Vector3.forward));     // 補正
+
+			if (delta.magnitude > 0.01f) {
+				var ofstRot = Quaternion.Inverse(Quaternion.LookRotation(Vector3.forward, Vector3.up));     // 補正
 
 				var forword = targetTransform.TransformDirection(Vector3.forward);              // 前方ベクトル取得
 
+				Debug.DrawLine(targetTransform.position, forword,Color.blue,3);
+
 				var prjFrom = Vector3.ProjectOnPlane(forword, Vector3.up);                      // 回転軸に垂直なベクトルを平面投影したベクトル
 				var prjTo = Vector3.ProjectOnPlane(delta, Vector3.up);
+				Debug.DrawLine(prjFrom, prjTo,Color.red,3);
 
 				var difAngle = Vector3.Angle(prjFrom, prjTo);                                       // 角度の差
 
