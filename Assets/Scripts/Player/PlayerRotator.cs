@@ -6,6 +6,7 @@ namespace Player {
 	public class PlayerRotator : MonoBehaviour {
 		[SerializeField] Transform targetTransform;
 		[SerializeField] float rotateDuration = 0.2f;
+		[SerializeField] float rotateThreshold = 0.01f;		// 閾値
 
 		Vector3 prevPos;
 		float currentVel;
@@ -21,11 +22,15 @@ namespace Player {
 		private void FixedUpdate()
 		{
 			Debug.DrawLine(targetTransform.position, prevPos,Color.yellow,3);
-			var delta = targetTransform.position - prevPos;
-			prevPos = targetTransform.position;
+			var pos = new Vector3(targetTransform.position.x, 0, targetTransform.position.z);
+
+			var delta = pos - prevPos;
+			prevPos = pos;
+
+			print(delta.magnitude);
 
 
-			if (delta.magnitude > 0.01f) {
+			if (delta.magnitude > rotateThreshold) {
 				var ofstRot = Quaternion.Inverse(Quaternion.LookRotation(Vector3.forward, Vector3.up));     // 補正
 
 				var forword = targetTransform.TransformDirection(Vector3.forward);              // 前方ベクトル取得
