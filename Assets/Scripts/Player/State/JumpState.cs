@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : PlayerStateBase
-{
+namespace Player.State {
+	public class JumpState : PlayerStateBase {
+		[SerializeField] PlayerLandingChecker landingChecker;
+		[SerializeField] PlayerJumper jumper;
 
-	//--------------------------------------------------
+		//--------------------------------------------------
 
-	public override void OnEnter()
-	{
-		animator.SetTrigger("Jumping");
-	}
+		public override void OnEnter()
+		{
+			animator.SetBool("Jumping",true);
+		}
 
-	public override void OnUpdate()
-	{
+		public override void OnUpdate()
+		{
+			// íÖínÇµÇΩÇÁë“ã@èÛë‘Ç…ëJà⁄
+			if (jumper.IsFalling && landingChecker.IsLanding) {
+				state.StateTransition<IdleState>();
+			}
+		}
 
-	}
-
-	public override void OnExit()
-	{
-
+		public override void OnExit()
+		{
+			animator.SetBool("Jumping", false);
+		}
 	}
 }

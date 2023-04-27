@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1812415511837826334}
   - component: {fileID: 3037634451333067301}
   - component: {fileID: 1119579790539163769}
+  - component: {fileID: 8014446769939974113}
   - component: {fileID: 4566009258484943053}
   m_Layer: 0
   m_Name: Controller
@@ -51,7 +52,6 @@ MonoBehaviour:
   maxVel: 100
   targetTransform: {fileID: 5894193981128250395}
   rb: {fileID: 7398956167842485367}
-  state: {fileID: 2629359893716561853}
 --- !u!114 &1119579790539163769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +66,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 5894193981128250395}
   rotateDuration: 0.15
+--- !u!114 &8014446769939974113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615940404642614414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45603d413d280f942b28568b78c35aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 100
+  rb: {fileID: 7398956167842485367}
+  landChecker: {fileID: 248383786955967102}
+  state: {fileID: 2629359893716561853}
 --- !u!114 &4566009258484943053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,17 +124,21 @@ MonoBehaviour:
     m_ActionId: b4954f0c-6d33-4572-8c5a-e467367f0bcb
     m_ActionName: Player/Move[/Keyboard/a,/Keyboard/d,/Keyboard/w,/Keyboard/s]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8014446769939974113}
+        m_TargetAssemblyTypeName: PlayerJumper, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3fa4fac7-22ce-41fb-b64e-72fcf06e13b0
     m_ActionName: Player/Jump[/Keyboard/space,/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d77a5d57-eaf2-45e0-8f0e-d6fdb323f21c
-    m_ActionName: Player/Rotate[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8f3933d5-520b-48b3-877b-fc8aa85b7460
-    m_ActionName: Player/CameraY[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e1548683-68f7-4ae8-8254-e5f94aa90cab
@@ -223,6 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58afb7e3c11c31a4f999d589f29d646e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  landingChecker: {fileID: 248383786955967102}
+  jumper: {fileID: 8014446769939974113}
 --- !u!1001 &5894193981128117923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1603,6 +1625,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &248383786955967102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894193981128083727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef612c46fa09a74e9811a8f2b883067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5894193981128250395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400056, guid: e39dd657be7298d408f1a135c76c3d9a, type: 3}
