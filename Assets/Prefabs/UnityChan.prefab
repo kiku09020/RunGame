@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6182067185613153660}
   - component: {fileID: 469173227426468758}
+  - component: {fileID: 2116484649479494316}
   m_Layer: 0
   m_Name: DamageChecker
   m_TagString: Untagged
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1, z: 0.4}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &2116484649479494316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2260037577207551682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c45ed4ab3a0d2409cfc84d48db0e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2626261806182467983
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +162,7 @@ GameObject:
   - component: {fileID: 1119579790539163769}
   - component: {fileID: 8014446769939974113}
   - component: {fileID: 4566009258484943053}
+  - component: {fileID: 1842256589358621699}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -217,8 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 100
   rb: {fileID: 9138006156401811513}
-  landChecker: {fileID: 0}
-  state: {fileID: 2629359893716561853}
+  player: {fileID: 2264361279486810141}
 --- !u!114 &4566009258484943053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +298,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1842256589358621699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615940404642614414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508ab64901e03324dbb88bba42ef1d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadDuration: 3
 --- !u!1 &6278147675656921256
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +324,7 @@ GameObject:
   - component: {fileID: 7774499095922801318}
   - component: {fileID: 329216880032734450}
   - component: {fileID: 8937824248155966210}
+  - component: {fileID: 5527883954706694732}
   m_Layer: 0
   m_Name: StateController
   m_TagString: Untagged
@@ -337,6 +364,7 @@ MonoBehaviour:
   - {fileID: 7774499095922801318}
   - {fileID: 329216880032734450}
   - {fileID: 8937824248155966210}
+  - {fileID: 5527883954706694732}
   animator: {fileID: 5894193981137615811}
 --- !u!114 &7774499095922801318
 MonoBehaviour:
@@ -376,8 +404,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58afb7e3c11c31a4f999d589f29d646e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  landingChecker: {fileID: 0}
+  landingChecker: {fileID: 4003611581920921407}
   jumper: {fileID: 8014446769939974113}
+--- !u!114 &5527883954706694732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6278147675656921256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdb9c4acdd4b3b479d1409ab81f01d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 9138006156401811513}
 --- !u!1001 &5894193981128117923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1755,6 +1796,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &2264361279486810141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894193981128083727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d7c129fda8b41479b392f0a0b9113b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: {fileID: 2629359893716561853}
+  landingChecker: {fileID: 4003611581920921407}
+  damageChecker: {fileID: 2116484649479494316}
 --- !u!4 &5894193981128250395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400056, guid: e39dd657be7298d408f1a135c76c3d9a, type: 3}

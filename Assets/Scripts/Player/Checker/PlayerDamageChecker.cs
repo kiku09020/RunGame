@@ -10,14 +10,14 @@ namespace Player {
 		//--------------------------------------------------
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.gameObject.tag == "Stage") {
+			if (other.gameObject.tag == "Damage") {
 				IsDamaged = true;
 			}
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			if (other.gameObject.tag == "Stage") {
+			if (other.gameObject.tag == "Damage") {
 				IsDamaged = false;
 			}
 		}

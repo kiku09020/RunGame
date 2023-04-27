@@ -11,9 +11,8 @@ namespace Player {
 
         [Header("Components")]
         [SerializeField] Rigidbody rb;
-        [SerializeField] PlayerLandingChecker landChecker;
-        [SerializeField] PlayerStateMathine state;
-
+        [SerializeField] PlayerCore player;
+ 
         public bool IsJumping { get; private set; }
         public bool IsFalling { get; private set; }
 
@@ -29,7 +28,7 @@ namespace Player {
             var velY=Mathf.Ceil(rb.velocity.y);
 
 			// 0ˆÈã‚¾‚Á‚½‚çfalling‚ðfalse
-			if (IsFalling && landChecker.IsLanding) {
+			if (IsFalling && player.IsLanding) {
                 if (velY >= 0) {
 				    IsFalling = false;
                 }
@@ -46,8 +45,8 @@ namespace Player {
 
 		public void OnJump(InputAction.CallbackContext context)
         {
-            if (landChecker.IsLanding) {
-                state.StateTransition<JumpState>();
+            if (player.IsLanding) {
+                player.State.StateTransition<JumpState>();
                 rb.AddForce(Vector3.up * jumpForce);
                 IsJumping = true;
             }
