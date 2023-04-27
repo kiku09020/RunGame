@@ -8,14 +8,18 @@ namespace Player {
 
 		//--------------------------------------------------
 
-		private void OnCollisionEnter(Collision collision)
+		private void OnTriggerEnter(Collider other)
 		{
-			IsLanding = true;
+			if (other.gameObject.tag == "Stage") {
+				IsLanding = true;
+			}
 		}
 
-		private void OnCollisionExit(Collision collision)
+		private void OnTriggerExit(Collider other)
 		{
-			IsLanding = false;
+			if (other.gameObject.tag == "Stage") {
+				IsLanding = false;
+			}
 		}
 	}
 }

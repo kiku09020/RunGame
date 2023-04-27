@@ -127,56 +127,39 @@
             ]
         },
         {
-            "name": "Game",
-            "id": "9f63ab06-6c2b-4fe2-9881-047835406366",
+            "name": "Camera",
+            "id": "a2beb993-9775-4795-ad8e-aee9a50ec269",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "e1548683-68f7-4ae8-8254-e5f94aa90cab",
-                    "expectedControlType": "Button",
-                    "processors": "",
+                    "name": "MoveX",
+                    "type": "Value",
+                    "id": "226396a9-d5b7-4903-9474-a72cecf86691",
+                    "expectedControlType": "Vector2",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "d57d2418-df3c-41c6-9a64-350e69677cc2",
-                    "path": "",
+                    "id": "f2a1a9c6-3125-4138-9930-f487f9abd7ae",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MoveX",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Debug",
-            "id": "24974336-183e-44d7-97d5-68d7457f2c47",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "3f307cf7-631c-4f36-8de4-251f175ca655",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "13b7f95f-ba07-4cd9-8c5a-ec79193b46b0",
-                    "path": "",
+                    "id": "f66dacdd-c42b-4357-a14d-e37f1eeb24bf",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MoveX",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

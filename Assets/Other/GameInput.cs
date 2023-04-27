@@ -149,56 +149,39 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Game"",
-            ""id"": ""9f63ab06-6c2b-4fe2-9881-047835406366"",
+            ""name"": ""Camera"",
+            ""id"": ""a2beb993-9775-4795-ad8e-aee9a50ec269"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""e1548683-68f7-4ae8-8254-e5f94aa90cab"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
+                    ""name"": ""MoveX"",
+                    ""type"": ""Value"",
+                    ""id"": ""226396a9-d5b7-4903-9474-a72cecf86691"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""ScaleVector2(x=0.1,y=0.1)"",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""d57d2418-df3c-41c6-9a64-350e69677cc2"",
-                    ""path"": """",
+                    ""id"": ""f2a1a9c6-3125-4138-9930-f487f9abd7ae"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""MoveX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Debug"",
-            ""id"": ""24974336-183e-44d7-97d5-68d7457f2c47"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""3f307cf7-631c-4f36-8de4-251f175ca655"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""13b7f95f-ba07-4cd9-8c5a-ec79193b46b0"",
-                    ""path"": """",
+                    ""id"": ""f66dacdd-c42b-4357-a14d-e37f1eeb24bf"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""MoveX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -211,12 +194,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        // Game
-        m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_Newaction = m_Game.FindAction("New action", throwIfNotFound: true);
-        // Debug
-        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
-        m_Debug_Newaction = m_Debug.FindAction("New action", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_MoveX = m_Camera.FindAction("MoveX", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -314,82 +294,45 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
-    // Game
-    private readonly InputActionMap m_Game;
-    private IGameActions m_GameActionsCallbackInterface;
-    private readonly InputAction m_Game_Newaction;
-    public struct GameActions
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private ICameraActions m_CameraActionsCallbackInterface;
+    private readonly InputAction m_Camera_MoveX;
+    public struct CameraActions
     {
         private @GameInput m_Wrapper;
-        public GameActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Game_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Game; }
+        public CameraActions(@GameInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MoveX => m_Wrapper.m_Camera_MoveX;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
-        public void SetCallbacks(IGameActions instance)
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraActions instance)
         {
-            if (m_Wrapper.m_GameActionsCallbackInterface != null)
+            if (m_Wrapper.m_CameraActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_GameActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnNewaction;
+                @MoveX.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveX;
+                @MoveX.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveX;
+                @MoveX.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveX;
             }
-            m_Wrapper.m_GameActionsCallbackInterface = instance;
+            m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @MoveX.started += instance.OnMoveX;
+                @MoveX.performed += instance.OnMoveX;
+                @MoveX.canceled += instance.OnMoveX;
             }
         }
     }
-    public GameActions @Game => new GameActions(this);
-
-    // Debug
-    private readonly InputActionMap m_Debug;
-    private IDebugActions m_DebugActionsCallbackInterface;
-    private readonly InputAction m_Debug_Newaction;
-    public struct DebugActions
-    {
-        private @GameInput m_Wrapper;
-        public DebugActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Debug_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Debug; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
-        public void SetCallbacks(IDebugActions instance)
-        {
-            if (m_Wrapper.m_DebugActionsCallbackInterface != null)
-            {
-                @Newaction.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnNewaction;
-            }
-            m_Wrapper.m_DebugActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
-            }
-        }
-    }
-    public DebugActions @Debug => new DebugActions(this);
+    public CameraActions @Camera => new CameraActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }
-    public interface IGameActions
+    public interface ICameraActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
-    }
-    public interface IDebugActions
-    {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMoveX(InputAction.CallbackContext context);
     }
 }
