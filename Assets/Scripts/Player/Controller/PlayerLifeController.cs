@@ -32,6 +32,7 @@ namespace Player {
 		public void Dead()
 		{
 
+			Revivaled();
 		}
 
 		/// <summary>

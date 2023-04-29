@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdb9c4acdd4b3b479d1409ab81f01d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 9138006156401811513}
+  lifeController: {fileID: 1842256589358621699}
 --- !u!1001 &5894193981128117923
 PrefabInstance:
   m_ObjectHideFlags: 0
