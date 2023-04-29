@@ -96,5 +96,19 @@ namespace GameController.State {
 
 			return state;
 		}
+
+		/// <summary>
+		/// Œ»İ‚Ìó‘Ô‚ªw’è‚³‚ê‚½ó‘Ô‚Æˆê’v‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+		/// </summary>
+		public bool CheckNowState<State>() where State:T
+		{
+			State state = default(State);
+
+			if (NowState == state) {
+				return true;
+			}
+
+			return false;
+		}
 	}
 }

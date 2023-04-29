@@ -310,7 +310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508ab64901e03324dbb88bba42ef1d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadDuration: 3
+  deadDuration: 1
+  revivaledPoint: {x: 0, y: 3, z: 0}
+  playerObj: {fileID: 5894193981128083727}
+  state: {fileID: 2629359893716561853}
+  damage: {fileID: 2116484649479494316}
 --- !u!1 &6278147675656921256
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 3037634451333067301}
+  player: {fileID: 2264361279486810141}
 --- !u!114 &329216880032734450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 3037634451333067301}
+  player: {fileID: 2264361279486810141}
 --- !u!114 &8937824248155966210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58afb7e3c11c31a4f999d589f29d646e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  landingChecker: {fileID: 4003611581920921407}
+  player: {fileID: 2264361279486810141}
   jumper: {fileID: 8014446769939974113}
 --- !u!114 &5527883954706694732
 MonoBehaviour:

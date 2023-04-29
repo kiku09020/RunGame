@@ -6,6 +6,8 @@ namespace Player.State {
 	public class MoveState : PlayerStateBase {
 
 		[SerializeField] PlayerMover mover;
+		[SerializeField] PlayerCore player;
+
 		//--------------------------------------------------
 
 		public override void OnEnter()
@@ -17,6 +19,10 @@ namespace Player.State {
 		{
 			if (!mover.IsMoving) {
 				state.StateTransition<IdleState>();
+			}
+
+			if (player.IsDamaged) {
+				state.StateTransition<DeadState>();
 			}
 		}
 

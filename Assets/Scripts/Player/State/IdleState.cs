@@ -6,6 +6,7 @@ namespace Player.State {
 	public class IdleState : PlayerStateBase {
 
 		[SerializeField] PlayerMover mover;
+		[SerializeField] PlayerCore player;
 
 		//--------------------------------------------------
 
@@ -18,6 +19,10 @@ namespace Player.State {
 		{
 			if (mover.IsMoving) {
 				state.StateTransition<MoveState>();
+			}
+
+			if (player.IsDamaged) {
+				state.StateTransition<DeadState>();
 			}
 		}
 

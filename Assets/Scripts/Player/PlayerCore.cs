@@ -22,12 +22,5 @@ namespace Player {
         public bool IsDamaged => damageChecker.IsDamaged;
 
 		//--------------------------------------------------
-
-		private void FixedUpdate()
-		{
-			if(IsDamaged) {
-                state.StateTransition<DeadState>();
-            }
-		}
 	}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Player {
     public class PlayerDamageChecker : MonoBehaviour {
 
-        public bool IsDamaged { get; private set; }
+        public bool IsDamaged { get; set; }
 
 		//--------------------------------------------------
 		private void OnTriggerEnter(Collider other)

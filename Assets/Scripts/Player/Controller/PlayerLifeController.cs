@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Player.State;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,35 +14,43 @@ namespace Player {
 
 		[Header("Parameters")]
 		[SerializeField] float deadDuration = 3;
+		[SerializeField] Vector3 revivaledPoint;
 
-		public bool IsDead { get; private set; }
-
+		[Header("Components")]
+		[SerializeField] GameObject playerObj;
+		[SerializeField] PlayerStateMathine state;
+		[SerializeField] PlayerDamageChecker damage;
 
 		CancellationToken token;
 
-		//--------------------------------------------------
+        //--------------------------------------------------
 
-		private void Awake()
-		{
+        private void Awake()
+        {
 			token = this.GetCancellationTokenOnDestroy();
-		}
+        }
 
-		/// <summary>
-		/// プレイヤーが死んだときの処理
-		/// </summary>
-		public void Dead()
+        /// <summary>
+        /// プレイヤーが死んだときの処理
+        /// </summary>
+        public void Dead()
 		{
-
-			Revivaled();
+			Revivaled().Forget();
 		}
 
 		/// <summary>
 		/// プレイヤーが生き返るときの処理
 		/// </summary>
-		public void Revivaled()
+		public async UniTask Revivaled()
 		{
-			UniTask.Delay(TimeSpan.FromSeconds(deadDuration), cancellationToken: token);		// 待機
-		}
+			await UniTask.Delay(TimeSpan.FromSeconds(deadDuration), false, PlayerLoopTiming.FixedUpdate,token);        // 待機
 
+			playerObj.transform.position = revivaledPoint;		// 初期位置にワープ
+			damage.IsDamaged = false;							// 移動後にfalseにする
+
+			state.StateTransition<IdleState>();					// 状態遷移
+
+			print("revivaled");
+		}
     }
 }

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player.State {
 	public class JumpState : PlayerStateBase {
-		[SerializeField] PlayerLandingChecker landingChecker;
+		[SerializeField] PlayerCore player;
 		[SerializeField] PlayerJumper jumper;
 
 		//--------------------------------------------------
@@ -17,8 +18,12 @@ namespace Player.State {
 		public override void OnUpdate()
 		{
 			// ’…’n‚µ‚½‚ç‘Ò‹@ó‘Ô‚É‘JˆÚ
-			if (jumper.IsFalling && landingChecker.IsLanding) {
-				state.StateTransition<IdleState>();
+			if (jumper.IsFalling && player.IsLanding) {
+ 				state.StateTransition<IdleState>();
+			}
+
+			if (player.IsDamaged) {
+				state.StateTransition<DeadState>();
 			}
 		}
 
