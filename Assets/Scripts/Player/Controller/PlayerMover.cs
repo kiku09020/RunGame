@@ -1,26 +1,41 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player {
     public class PlayerMover : MonoBehaviour {
         [Header("Parameters")]
-        [SerializeField] float speed = 50;
-        [SerializeField] float maxVel = 200;
+        [SerializeField] float speed = 50;              // 速度
+        [SerializeField] float maxVel = 200;            // 最大速度
+        [SerializeField] float moveThreshold = 0.1f;    // 移動閾値
 
-        Vector3 moveVec;
+        [Header("Effects")]
+        [SerializeField] bool enableEffect;
+        [SerializeField] ParticleSystem dashParticle;
+        [SerializeField] float particleInterval = 0.2f;
+
+        Vector3 moveVec;                                // 移動ベクトル
 
         [Header("Components")]
         [SerializeField] Transform targetTransform;
         [SerializeField] Rigidbody rb;
+        [SerializeField] PlayerCore player;
 
+        /// <summary>
+        /// 移動しているかどうか
+        /// </summary>
         public bool IsMoving { get; private set; }
 
-        //--------------------------------------------------
+        float timer;
 
-        // 移動関係の入力取得
-        public void OnMove(InputAction.CallbackContext context)
+		//--------------------------------------------------
+
+		// 入力取得
+		public void OnMove(InputAction.CallbackContext context)
         {
             var axis = context.ReadValue<Vector2>();
 
@@ -29,21 +44,39 @@ namespace Player {
 
         void FixedUpdate()
         {
+            // Y軸を除いた速度の大きさを取得
             var vel = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
 
-            if (vel > .1f) {
-                IsMoving = true;
-            }
+            // 移動判定
+            IsMoving = (vel > moveThreshold) ? true : false;
 
-            else {
-                IsMoving = false;
-            }
-
+            // 移動
             if (rb.velocity.magnitude < maxVel) {
+                // カメラからのプレイヤーの正面方向を取得
                 var forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
                 var moveForword = forward * moveVec.z + Camera.main.transform.right * moveVec.x;
 
+                // 移動
                 rb.AddForce(moveForword * speed);
+
+                GenerateDashEffect();
+            }
+
+		}
+
+        void GenerateDashEffect()
+        {
+            if (IsMoving&&player.IsLanding) {
+                timer += Time.deltaTime;
+
+                if (timer >= particleInterval) {
+                    Instantiate(dashParticle, targetTransform.position, Quaternion.identity);
+                    timer = 0;
+                }
+            }
+
+            else {
+                timer = 0;
             }
         }
     }

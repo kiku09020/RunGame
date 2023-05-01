@@ -22,6 +22,7 @@ namespace Player.State {
  				state.StateTransition<IdleState>();
 			}
 
+			// ƒ_ƒ[ƒWó‘Ô‚É‘JˆÚ
 			if (player.IsDamaged) {
 				state.StateTransition<DeadState>();
 			}

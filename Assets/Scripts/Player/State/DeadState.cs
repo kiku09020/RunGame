@@ -11,8 +11,6 @@ namespace Player.State {
 
 		public override void OnEnter()
 		{
-			print("aaaaaa!!!!!");
-
 			animator.SetBool("Damaged", true);
 			lifeController.Dead();
 		}

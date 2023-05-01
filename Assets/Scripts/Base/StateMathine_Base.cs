@@ -28,6 +28,9 @@ namespace GameController.State {
 			print(NowState);
 		}
 
+		/// <summary>
+		/// ‚·‚×‚Ä‚Ìó‘Ô‚Ì‹¤’Ê‚Ì‰Šú‰»
+		/// </summary>
 		protected virtual void AllStatesInit(){}
 
 		/// <summary>

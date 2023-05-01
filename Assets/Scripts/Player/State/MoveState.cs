@@ -17,10 +17,12 @@ namespace Player.State {
 
 		public override void OnUpdate()
 		{
+			// 待機状態に遷移
 			if (!mover.IsMoving) {
 				state.StateTransition<IdleState>();
 			}
 
+			// ダメージ状態に遷移
 			if (player.IsDamaged) {
 				state.StateTransition<DeadState>();
 			}

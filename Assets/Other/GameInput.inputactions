@@ -135,7 +135,16 @@
                     "type": "Value",
                     "id": "226396a9-d5b7-4903-9474-a72cecf86691",
                     "expectedControlType": "Vector2",
-                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "02e06781-2d82-407e-b83e-56262da8ea6e",
+                    "expectedControlType": "Axis",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -146,7 +155,7 @@
                     "id": "f2a1a9c6-3125-4138-9930-f487f9abd7ae",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=-0.1,y=-0.1)",
                     "groups": "",
                     "action": "MoveX",
                     "isComposite": false,
@@ -157,9 +166,20 @@
                     "id": "f66dacdd-c42b-4357-a14d-e37f1eeb24bf",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=-0.7,y=-0.7)",
                     "groups": "",
                     "action": "MoveX",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95c3b278-3329-422b-ae89-bee58ab1e588",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

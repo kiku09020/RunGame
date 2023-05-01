@@ -35,13 +35,13 @@ namespace Player {
         /// </summary>
         public void Dead()
 		{
-			Revivaled().Forget();
+			Revivaled().Forget();		// 生き返り処理
 		}
 
 		/// <summary>
 		/// プレイヤーが生き返るときの処理
 		/// </summary>
-		public async UniTask Revivaled()
+		async UniTask Revivaled()
 		{
 			await UniTask.Delay(TimeSpan.FromSeconds(deadDuration), false, PlayerLoopTiming.FixedUpdate,token);        // 待機
 
@@ -49,8 +49,6 @@ namespace Player {
 			damage.IsDamaged = false;							// 移動後にfalseにする
 
 			state.StateTransition<IdleState>();					// 状態遷移
-
-			print("revivaled");
 		}
     }
 }

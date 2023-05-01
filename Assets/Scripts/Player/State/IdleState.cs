@@ -17,10 +17,12 @@ namespace Player.State {
 
 		public override void OnUpdate()
 		{
+			// ˆÚ“®ó‘Ô‚É‘JˆÚ
 			if (mover.IsMoving) {
 				state.StateTransition<MoveState>();
 			}
 
+			// ƒ_ƒ[ƒWó‘Ô‚É‘JˆÚ
 			if (player.IsDamaged) {
 				state.StateTransition<DeadState>();
 			}

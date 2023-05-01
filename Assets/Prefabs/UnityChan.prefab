@@ -200,8 +200,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   maxVel: 100
+  moveThreshold: 0.1
+  enableEffect: 1
+  dashParticle: {fileID: 1374886746357501439, guid: b41c165ea92ea6d4589c8a9b109af8e2, type: 3}
+  particleInterval: 0.15
   targetTransform: {fileID: 5894193981128250395}
   rb: {fileID: 9138006156401811513}
+  player: {fileID: 2264361279486810141}
 --- !u!114 &1119579790539163769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +298,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 226396a9-d5b7-4903-9474-a72cecf86691
     m_ActionName: Camera/MoveX[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 02e06781-2d82-407e-b83e-56262da8ea6e
+    m_ActionName: Camera/Zoom[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
