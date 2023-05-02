@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Player.State {
     public class DeadState : PlayerStateBase {
 
+		[Header("Components")]
 		[SerializeField] PlayerLifeController lifeController;
 
 		//--------------------------------------------------
@@ -12,7 +13,7 @@ namespace Player.State {
 		public override void OnEnter()
 		{
 			animator.SetBool("Damaged", true);
-			lifeController.Dead();
+			lifeController.Dead();			
 		}
 
 		public override void OnUpdate()

@@ -44,37 +44,48 @@ namespace Player {
 
         void FixedUpdate()
         {
-            // Y軸を除いた速度の大きさを取得
-            var vel = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
+            if (!player.IsGoaled && !player.IsDamaged) {
+                // Y軸を除いた速度の大きさを取得
+                var vel = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
 
-            // 移動判定
-            IsMoving = (vel > moveThreshold) ? true : false;
-
-            // 移動
-            if (rb.velocity.magnitude < maxVel) {
-                // カメラからのプレイヤーの正面方向を取得
-                var forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-                var moveForword = forward * moveVec.z + Camera.main.transform.right * moveVec.x;
+                // 移動判定
+                IsMoving = (vel > moveThreshold) ? true : false;
 
                 // 移動
-                rb.AddForce(moveForword * speed);
+                if (rb.velocity.magnitude < maxVel) {
+                    // カメラからのプレイヤーの正面方向を取得
+                    var forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+                    var moveForword = forward * moveVec.z + Camera.main.transform.right * moveVec.x;
 
-                GenerateDashEffect();
+                    // 移動
+                    rb.AddForce(moveForword * speed);
+
+                    GenerateDashEffect();
+                }
+            }
+
+            else {
+                // 移動中止
+                IsMoving = false;
             }
 
 		}
 
+        // ダッシュエフェクトの生成
         void GenerateDashEffect()
         {
-            if (IsMoving&&player.IsLanding) {
+            // 地上で移動しているときのみ生成
+            if (IsMoving && player.IsLanding) {
                 timer += Time.deltaTime;
 
+                // インターバルごとに生成
                 if (timer >= particleInterval) {
                     Instantiate(dashParticle, targetTransform.position, Quaternion.identity);
                     timer = 0;
                 }
             }
 
+            // タイマーリセット
             else {
                 timer = 0;
             }

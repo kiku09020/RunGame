@@ -11,6 +11,7 @@ namespace Player {
         [Header("HitChecker")]
         [SerializeField] PlayerLandingChecker landingChecker;
         [SerializeField] PlayerDamageChecker damageChecker;
+        [SerializeField] GoalChecker goalChecker;
 
 		//--------------------------------------------------
 
@@ -20,6 +21,7 @@ namespace Player {
         // Flags
         public bool IsLanding => landingChecker.IsLanding;
         public bool IsDamaged => damageChecker.IsDamaged;
+        public bool IsGoaled => goalChecker.IsGoaled;
 
 		//--------------------------------------------------
 	}

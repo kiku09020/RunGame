@@ -2,22 +2,13 @@
     "name": "GameInput",
     "maps": [
         {
-            "name": "Player",
-            "id": "ba5df36e-c6ee-47df-8d1c-3c78f0c83322",
+            "name": "Reset",
+            "id": "4cced04f-eefa-4ede-9c88-793496f22106",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "b4954f0c-6d33-4572-8c5a-e467367f0bcb",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "3fa4fac7-22ce-41fb-b64e-72fcf06e13b0",
+                    "name": "Reset",
+                    "type": "PassThrough",
+                    "id": "d2b47ca3-71fc-461f-be40-a9de67de539d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
@@ -27,159 +18,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "d4652a51-64c2-4500-bced-adba891a8df6",
-                    "path": "<Keyboard>/space",
+                    "id": "25e48822-7a72-4389-9955-ac35709d19e5",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "bfe1f137-ae4d-4f5e-a3c1-30f4281399ca",
-                    "path": "<Keyboard>/enter",
+                    "id": "3ee51e8a-fa19-42a4-8925-aceb0561595a",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "15ff8fd5-8388-4553-8cb9-0e46875f0245",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "356480c4-70e9-4fcd-a3e2-53df00066919",
-                    "path": "2DVector(mode=1)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Up",
-                    "id": "89626955-4505-4bf3-a998-494b3c5201e3",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Down",
-                    "id": "e98ff03b-6c78-4155-8e93-074814b40cbe",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Left",
-                    "id": "52ec1c88-3445-4c0d-9d2e-a58b9c2cd0ad",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Right",
-                    "id": "386305cd-718e-434b-8be8-b4d5dc48aafd",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "9b8450ab-9a3c-4a65-9bf6-35249139195e",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Camera",
-            "id": "a2beb993-9775-4795-ad8e-aee9a50ec269",
-            "actions": [
-                {
-                    "name": "MoveX",
-                    "type": "Value",
-                    "id": "226396a9-d5b7-4903-9474-a72cecf86691",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Zoom",
-                    "type": "Value",
-                    "id": "02e06781-2d82-407e-b83e-56262da8ea6e",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "f2a1a9c6-3125-4138-9930-f487f9abd7ae",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "ScaleVector2(x=-0.1,y=-0.1)",
-                    "groups": "",
-                    "action": "MoveX",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f66dacdd-c42b-4357-a14d-e37f1eeb24bf",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "ScaleVector2(x=-0.7,y=-0.7)",
-                    "groups": "",
-                    "action": "MoveX",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "95c3b278-3329-422b-ae89-bee58ab1e588",
-                    "path": "<Mouse>/scroll/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Zoom",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

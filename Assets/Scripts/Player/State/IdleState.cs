@@ -26,6 +26,11 @@ namespace Player.State {
 			if (player.IsDamaged) {
 				state.StateTransition<DeadState>();
 			}
+
+			// ƒS[ƒ‹ó‘Ô
+			if(player.IsGoaled) {
+				state.StateTransition<GoalState>();
+			}
 		}
 
 		public override void OnExit()

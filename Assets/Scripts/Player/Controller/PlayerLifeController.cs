@@ -21,6 +21,9 @@ namespace Player {
 		[SerializeField] PlayerStateMathine state;
 		[SerializeField] PlayerDamageChecker damage;
 
+		[Header("Effects")]
+		[SerializeField] ParticleSystem particle;
+
 		CancellationToken token;
 
         //--------------------------------------------------
@@ -35,6 +38,8 @@ namespace Player {
         /// </summary>
         public void Dead()
 		{
+			Instantiate(particle, transform.position, Quaternion.identity);		// パーティクル生成
+
 			Revivaled().Forget();		// 生き返り処理
 		}
 
